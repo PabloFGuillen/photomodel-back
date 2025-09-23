@@ -1,15 +1,15 @@
-package com.photomodel.photomodel_api.domain;
+package com.photomodel.photomodel_api.infrastructure.persistence.jpa;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.photomodel.photomodel_api.domain.Image;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
-public class User {
+@Document(collection = "User")
+public class UserJpaEntity {
 
+    @Id
     private String id;
 
     private String userName;
@@ -22,19 +22,8 @@ public class User {
 
     private Enum role;
 
-    private List<Image> imageList = new ArrayList<>();
+    private List<Image> imageList;
 
-    public User() {
-    }
-
-    public User(String id, String userName, String email, String password, Enum level, Enum rol) {
-        this.id = id;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-        this.level = level;
-        this.role = rol;
-    }
 
     public String getId() {
         return id;
