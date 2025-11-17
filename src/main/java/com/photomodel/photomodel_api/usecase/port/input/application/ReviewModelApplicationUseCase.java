@@ -5,8 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface ReviewModelApplicationUseCase {
 
-    List<Application> ReviewModelApplicationUseCase(String proyectId);
+    List<Application> ReviewModelApplicationUseCase(String projectId);
 }

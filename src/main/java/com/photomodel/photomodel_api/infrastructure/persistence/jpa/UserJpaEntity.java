@@ -3,6 +3,7 @@ package com.photomodel.photomodel_api.infrastructure.persistence.jpa;
 import com.photomodel.photomodel_api.domain.Image;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
@@ -18,8 +19,10 @@ public class UserJpaEntity {
 
     private String password;
 
+    @Field("level")
     private Enum level;
 
+    @Field("role")
     private Enum role;
 
     private List<Image> imageList;

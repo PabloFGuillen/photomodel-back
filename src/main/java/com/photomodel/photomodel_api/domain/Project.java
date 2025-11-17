@@ -1,13 +1,12 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.jpa;
+package com.photomodel.photomodel_api.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Getter;
+import lombok.Setter;
 
-@Document(collection = "Proyect")
-public class ProyectJpaEntity {
+@Getter
+@Setter
+public class Project {
 
-    @Id
     private String id;
 
     private String title;
@@ -16,14 +15,28 @@ public class ProyectJpaEntity {
 
     private String location;
 
+    private Double latitude;
+    private Double longitude;
 
-    private GeoJsonPoint geoLocation;
 
     private Long date;
 
-    private boolean paidProject;
+    private boolean paidProject = false;
 
     private String userId;
+
+    public Project() {
+    }
+
+    public Project(String id, String title, String description, String location, Long date, boolean paidProject, String userId) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.date = date;
+        this.paidProject = paidProject;
+        this.userId = userId;
+    }
 
     public String getId() {
         return id;
@@ -57,15 +70,6 @@ public class ProyectJpaEntity {
         this.location = location;
     }
 
-
-    public GeoJsonPoint getGeoLocation() {
-        return geoLocation;
-    }
-
-    public void setGeoLocation(GeoJsonPoint geoLocation) {
-        this.geoLocation = geoLocation;
-    }
-
     public Long getDate() {
         return date;
     }
@@ -88,5 +92,21 @@ public class ProyectJpaEntity {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }

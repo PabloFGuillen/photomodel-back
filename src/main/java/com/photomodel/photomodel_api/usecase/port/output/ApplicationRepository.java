@@ -15,5 +15,4 @@ public interface ApplicationRepository {
 
     void updateApplication(Application application);
 
-    List<Application> getProyectApplications(String proyectId, String role);
 }

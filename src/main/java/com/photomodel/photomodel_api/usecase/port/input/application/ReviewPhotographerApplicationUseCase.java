@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ReviewPhotographerApplicationUseCase {
 
-    List<Application> ReviewPhotographerApplicationUseCase(String proyectId);
+    List<Application> ReviewPhotographerApplicationUseCase(String projectId);
 }

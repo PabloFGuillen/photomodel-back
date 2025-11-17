@@ -1,6 +1,7 @@
 package com.photomodel.photomodel_api.infrastructure.persistence.repository;
 
 import com.photomodel.photomodel_api.domain.Application;
+import com.photomodel.photomodel_api.infrastructure.persistence.jpa.ApplicationJpaEntity;
 import com.photomodel.photomodel_api.infrastructure.persistence.jpa.repo.ApplicationJpaRepository;
 import com.photomodel.photomodel_api.infrastructure.persistence.mapper.ApplicationMapper;
 import com.photomodel.photomodel_api.usecase.port.output.ApplicationRepository;
@@ -21,21 +22,22 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     @Override
     public void insertApplication(Application application) {
-
+        ApplicationJpaEntity applicationJpaEntity = applicationMapper.toEntity(application);
+        applicationJpaRepository.insertApplication(applicationJpaEntity);
     }
 
     @Override
     public Application getApplication(String applicationId) {
-        return null;
+        ApplicationJpaEntity applicationJpaEntity = applicationJpaRepository.getApplication(applicationId);
+        return applicationMapper.toDomain(applicationJpaEntity);
     }
 
     @Override
     public void updateApplication(Application application) {
+        ApplicationJpaEntity applicationJpaEntity = applicationMapper.toEntity(application);
+        applicationJpaRepository.updateApplication(applicationJpaEntity);
 
     }
 
-    @Override
-    public List<Application> getProyectApplications(String proyectId, String role) {
-        return null;
-    }
+
 }

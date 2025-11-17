@@ -4,7 +4,6 @@ import com.photomodel.photomodel_api.utils.enums.ProjectStatus;
 import com.photomodel.photomodel_api.utils.enums.UserRole;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Document(collection = "Application")
 public class ApplicationJpaEntity {
@@ -14,7 +13,7 @@ public class ApplicationJpaEntity {
 
     private String userId;
 
-    private String proyectId;
+    private String projectId;
 
     private ProjectStatus status;
 
@@ -38,12 +37,12 @@ public class ApplicationJpaEntity {
         this.userId = userId;
     }
 
-    public String getProyectId() {
-        return proyectId;
+    public String getProjectId() {
+        return projectId;
     }
 
-    public void setProyectId(String proyectId) {
-        this.proyectId = proyectId;
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
     public ProjectStatus getStatus() {

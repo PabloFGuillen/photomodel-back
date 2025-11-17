@@ -22,6 +22,16 @@ public class User {
 
     private Enum role;
 
+    private String jwt;
+
+    public String getJwt() {
+        return jwt;
+    }
+
+    public void setJwt(String jwt) {
+        this.jwt = jwt;
+    }
+
     private List<Image> imageList = new ArrayList<>();
 
     public User() {

@@ -1,8 +1,8 @@
 package com.photomodel.photomodel_api.usecase.port.output;
 
-import com.photomodel.photomodel_api.domain.Proyect;
+import com.photomodel.photomodel_api.domain.Application;
+import com.photomodel.photomodel_api.domain.Project;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,9 +10,11 @@ import java.util.List;
 
 public interface ProjectRepository {
 
-    void insertProyect(Proyect proyect);
+    void insertProject(Project project);
 
-    Proyect getProyect(String proyectId);
+    Project getProject(String projectId);
 
-    List<Proyect> getProyectListNearLocation(Double latitude, Double longitude, Integer kilometers);
+    List<Project> getProjectListNearLocation(Double latitude, Double longitude, Integer kilometers);
+
+    List<Application> getProjectApplications(String projectId, String role);
 }

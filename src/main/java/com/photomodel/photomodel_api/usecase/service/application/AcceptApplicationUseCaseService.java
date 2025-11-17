@@ -6,7 +6,9 @@ import com.photomodel.photomodel_api.usecase.port.input.application.AcceptApplic
 import com.photomodel.photomodel_api.usecase.port.output.ApplicationRepository;
 import com.photomodel.photomodel_api.utils.enums.ProjectStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AcceptApplicationUseCaseService implements AcceptApplicationUseCase {
 
     @Autowired

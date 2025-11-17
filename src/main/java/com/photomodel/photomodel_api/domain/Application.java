@@ -9,7 +9,7 @@ public class Application {
 
     private String userId;
 
-    private String proyectId;
+    private String projectId;
 
     private ProjectStatus status;
 
@@ -20,10 +20,10 @@ public class Application {
     public Application() {
     }
 
-    public Application(String id, String userId, String proyectId, ProjectStatus status, Long applicationDate) {
+    public Application(String id, String userId, String projectId, ProjectStatus status, Long applicationDate) {
         this.id = id;
         this.userId = userId;
-        this.proyectId = proyectId;
+        this.projectId = projectId;
         this.status = status;
         this.applicationDate = applicationDate;
     }
@@ -44,12 +44,12 @@ public class Application {
         this.userId = userId;
     }
 
-    public String getProyectId() {
-        return proyectId;
+    public String getProjectId() {
+        return projectId;
     }
 
-    public void setProyectId(String proyectId) {
-        this.proyectId = proyectId;
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
     public ProjectStatus getStatus() {

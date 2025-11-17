@@ -4,6 +4,9 @@ import com.photomodel.photomodel_api.domain.Application;
 import com.photomodel.photomodel_api.infrastructure.persistence.jpa.ApplicationJpaEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class ApplicationMapper {
 
@@ -14,7 +17,7 @@ public class ApplicationMapper {
         applicationJpaEntity.setRole(application.getRole());
         applicationJpaEntity.setStatus(application.getStatus());
         applicationJpaEntity.setUserId(application.getUserId());
-        applicationJpaEntity.setProyectId(application.getProyectId());
+        applicationJpaEntity.setProjectId(application.getProjectId());
         applicationJpaEntity.setApplicationDate(application.getApplicationDate());
         return applicationJpaEntity;
     }
@@ -25,8 +28,17 @@ public class ApplicationMapper {
         application.setRole(applicationJpa.getRole());
         application.setStatus(applicationJpa.getStatus());
         application.setUserId(applicationJpa.getUserId());
-        application.setProyectId(applicationJpa.getProyectId());
+        application.setProjectId(applicationJpa.getProjectId());
         application.setApplicationDate(applicationJpa.getApplicationDate());
         return application;
+    }
+
+    public List<Application> toDomainList(List<ApplicationJpaEntity> applicationJpaList) {
+        List<Application> applicationList = new ArrayList<>();
+        for(ApplicationJpaEntity applicationJpa: applicationJpaList){
+            Application application = toDomain(applicationJpa);
+            applicationList.add(application);
+        }
+        return applicationList;
     }
 }

@@ -1,12 +1,13 @@
-package com.photomodel.photomodel_api.domain;
+package com.photomodel.photomodel_api.infrastructure.persistence.jpa;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
-@Setter
-public class Proyect {
+@Document(collection = "Project")
+public class ProjectJpaEntity {
 
+    @Id
     private String id;
 
     private String title;
@@ -15,28 +16,14 @@ public class Proyect {
 
     private String location;
 
-    private Double latitude;
-    private Double longitude;
 
+    private GeoJsonPoint geoLocation;
 
     private Long date;
 
-    private boolean paidProject = false;
+    private boolean paidProject;
 
     private String userId;
-
-    public Proyect() {
-    }
-
-    public Proyect(String id, String title, String description, String location, Long date, boolean paidProject, String userId) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.location = location;
-        this.date = date;
-        this.paidProject = paidProject;
-        this.userId = userId;
-    }
 
     public String getId() {
         return id;
@@ -70,6 +57,15 @@ public class Proyect {
         this.location = location;
     }
 
+
+    public GeoJsonPoint getGeoLocation() {
+        return geoLocation;
+    }
+
+    public void setGeoLocation(GeoJsonPoint geoLocation) {
+        this.geoLocation = geoLocation;
+    }
+
     public Long getDate() {
         return date;
     }
@@ -92,21 +88,5 @@ public class Proyect {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
     }
 }

@@ -1,5 +1,6 @@
 package com.photomodel.photomodel_api.utils;
 
+import jakarta.annotation.PostConstruct;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,9 +14,12 @@ public class JasyptUtils {
 
     private BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
 
-    public JasyptUtils(){
+    @PostConstruct
+    public void init() {
+        textEncryptor = new BasicTextEncryptor();
         textEncryptor.setPassword(secretKey);
     }
+
 
     public String encryptPassword(String password){
         return textEncryptor.encrypt(password);
