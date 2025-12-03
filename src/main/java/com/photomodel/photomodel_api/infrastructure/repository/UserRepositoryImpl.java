@@ -1,12 +1,12 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.repository;
+package com.photomodel.photomodel_api.infrastructure.repository;
 
 import com.photomodel.photomodel_api.domain.Image;
 import com.photomodel.photomodel_api.domain.User;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.ImageJpaEntity;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.UserJpaEntity;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.repo.UserJpaRepository;
-import com.photomodel.photomodel_api.infrastructure.persistence.mapper.ImageMapper;
-import com.photomodel.photomodel_api.infrastructure.persistence.mapper.UserMapper;
+import com.photomodel.photomodel_api.infrastructure.jpa.ImageJpaEntity;
+import com.photomodel.photomodel_api.infrastructure.jpa.UserJpaEntity;
+import com.photomodel.photomodel_api.infrastructure.jpa.repo.UserJpaRepository;
+import com.photomodel.photomodel_api.infrastructure.mapper.ImageMapper;
+import com.photomodel.photomodel_api.infrastructure.mapper.UserMapper;
 import com.photomodel.photomodel_api.usecase.port.output.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

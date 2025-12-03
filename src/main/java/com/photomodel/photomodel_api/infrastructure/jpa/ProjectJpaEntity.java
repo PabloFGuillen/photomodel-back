@@ -1,4 +1,4 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.jpa;
+package com.photomodel.photomodel_api.infrastructure.jpa;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;

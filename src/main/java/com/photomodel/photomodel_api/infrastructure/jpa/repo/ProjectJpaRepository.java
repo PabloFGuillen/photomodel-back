@@ -1,13 +1,10 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.jpa.repo;
+package com.photomodel.photomodel_api.infrastructure.jpa.repo;
 
-import com.photomodel.photomodel_api.domain.Project;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.ProjectJpaEntity;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.UserJpaEntity;
+import com.photomodel.photomodel_api.infrastructure.jpa.ProjectJpaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

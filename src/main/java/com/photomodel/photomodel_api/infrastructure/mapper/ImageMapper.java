@@ -1,7 +1,7 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.mapper;
+package com.photomodel.photomodel_api.infrastructure.mapper;
 
 import com.photomodel.photomodel_api.domain.Image;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.ImageJpaEntity;
+import com.photomodel.photomodel_api.infrastructure.jpa.ImageJpaEntity;
 import org.springframework.stereotype.Component;
 
 @Component

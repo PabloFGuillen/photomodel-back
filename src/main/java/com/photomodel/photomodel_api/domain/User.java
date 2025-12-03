@@ -1,5 +1,7 @@
 package com.photomodel.photomodel_api.domain;
 
+import com.photomodel.photomodel_api.utils.enums.UserRole;
+import com.photomodel.photomodel_api.utils.enums.UserType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,38 +14,32 @@ public class User {
 
     private String id;
 
-    private String userName;
+    private String username;
 
     private String email;
 
     private String password;
 
-    private Enum level;
+    private UserType level;
 
-    private Enum role;
+    private UserRole role;
 
-    private String jwt;
-
-    public String getJwt() {
-        return jwt;
-    }
-
-    public void setJwt(String jwt) {
-        this.jwt = jwt;
-    }
+    private Boolean emailValidated;
 
     private List<Image> imageList = new ArrayList<>();
 
     public User() {
     }
 
-    public User(String id, String userName, String email, String password, Enum level, Enum rol) {
+    public User(String id, String username, String email, String password, UserType level, UserRole role, Boolean emailValidated, List<Image> imageList) {
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.level = level;
-        this.role = rol;
+        this.role = role;
+        this.emailValidated = emailValidated;
+        this.imageList = imageList;
     }
 
     public String getId() {
@@ -54,12 +50,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -78,19 +74,19 @@ public class User {
         this.password = password;
     }
 
-    public Enum getLevel() {
+    public UserType getLevel() {
         return level;
     }
 
-    public void setLevel(Enum level) {
+    public void setLevel(UserType level) {
         this.level = level;
     }
 
-    public Enum getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(Enum role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 
@@ -100,5 +96,13 @@ public class User {
 
     public void setImageList(List<Image> imageList) {
         this.imageList = imageList;
+    }
+
+    public Boolean getEmailValidated() {
+        return emailValidated;
+    }
+
+    public void setEmailValidated(Boolean emailValidated) {
+        this.emailValidated = emailValidated;
     }
 }

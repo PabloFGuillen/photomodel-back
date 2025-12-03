@@ -1,7 +1,7 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.mapper;
+package com.photomodel.photomodel_api.infrastructure.mapper;
 
 import com.photomodel.photomodel_api.domain.Project;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.ProjectJpaEntity;
+import com.photomodel.photomodel_api.infrastructure.jpa.ProjectJpaEntity;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.stereotype.Component;
 

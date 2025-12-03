@@ -1,4 +1,4 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.jpa;
+package com.photomodel.photomodel_api.infrastructure.jpa;
 
 import com.photomodel.photomodel_api.utils.enums.ProjectStatus;
 import com.photomodel.photomodel_api.utils.enums.UserRole;

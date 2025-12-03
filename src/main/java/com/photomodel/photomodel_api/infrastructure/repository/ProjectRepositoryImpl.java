@@ -1,13 +1,13 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.repository;
+package com.photomodel.photomodel_api.infrastructure.repository;
 
 import com.photomodel.photomodel_api.domain.Application;
 import com.photomodel.photomodel_api.domain.Project;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.ApplicationJpaEntity;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.ProjectJpaEntity;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.repo.ApplicationJpaRepository;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.repo.ProjectJpaRepository;
-import com.photomodel.photomodel_api.infrastructure.persistence.mapper.ApplicationMapper;
-import com.photomodel.photomodel_api.infrastructure.persistence.mapper.ProjectMapper;
+import com.photomodel.photomodel_api.infrastructure.jpa.ApplicationJpaEntity;
+import com.photomodel.photomodel_api.infrastructure.jpa.ProjectJpaEntity;
+import com.photomodel.photomodel_api.infrastructure.jpa.repo.ApplicationJpaRepository;
+import com.photomodel.photomodel_api.infrastructure.jpa.repo.ProjectJpaRepository;
+import com.photomodel.photomodel_api.infrastructure.mapper.ApplicationMapper;
+import com.photomodel.photomodel_api.infrastructure.mapper.ProjectMapper;
 import com.photomodel.photomodel_api.usecase.port.output.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

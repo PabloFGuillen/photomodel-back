@@ -1,10 +1,7 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.jpa.repo;
+package com.photomodel.photomodel_api.infrastructure.jpa.repo;
 
 import com.photomodel.photomodel_api.domain.Image;
-import com.photomodel.photomodel_api.domain.User;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.ApplicationJpaEntity;
-import com.photomodel.photomodel_api.infrastructure.persistence.jpa.UserJpaEntity;
-import lombok.Setter;
+import com.photomodel.photomodel_api.infrastructure.jpa.UserJpaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;

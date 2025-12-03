@@ -1,10 +1,13 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.jpa;
+package com.photomodel.photomodel_api.infrastructure.jpa;
 
 import com.photomodel.photomodel_api.domain.Image;
+import com.photomodel.photomodel_api.utils.enums.UserRole;
+import com.photomodel.photomodel_api.utils.enums.UserType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "User")
@@ -20,13 +23,23 @@ public class UserJpaEntity {
     private String password;
 
     @Field("level")
-    private Enum level;
+    private UserType level;
 
     @Field("role")
-    private Enum role;
+    private UserRole role;
 
-    private List<Image> imageList;
+    private Boolean emailValidated;
 
+    private List<Image> imageList = new ArrayList<>();
+
+
+    public Boolean getEmailValidated() {
+        return emailValidated;
+    }
+
+    public void setEmailValidated(Boolean emailValidated) {
+        this.emailValidated = emailValidated;
+    }
 
     public String getId() {
         return id;
@@ -60,19 +73,19 @@ public class UserJpaEntity {
         this.password = password;
     }
 
-    public Enum getLevel() {
+    public UserType getLevel() {
         return level;
     }
 
-    public void setLevel(Enum level) {
+    public void setLevel(UserType level) {
         this.level = level;
     }
 
-    public Enum getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(Enum role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 

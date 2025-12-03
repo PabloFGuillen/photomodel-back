@@ -1,4 +1,4 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.web;
+package com.photomodel.photomodel_api.infrastructure.web;
 
 import com.photomodel.photomodel_api.usecase.port.input.application.ReviewModelApplicationUseCase;
 import com.photomodel.photomodel_api.usecase.port.input.application.ReviewPhotographerApplicationUseCase;

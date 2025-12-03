@@ -1,4 +1,4 @@
-package com.photomodel.photomodel_api.infrastructure.persistence.views;
+package com.photomodel.photomodel_api.infrastructure.views;
 
 import com.photomodel.photomodel_api.utils.enums.UserRole;
 import com.photomodel.photomodel_api.utils.enums.UserType;
