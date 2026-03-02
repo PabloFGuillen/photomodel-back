@@ -2,6 +2,7 @@ package com.photomodel.photomodel_api.usecase.service.user;
 
 import com.photomodel.photomodel_api.domain.User;
 import com.photomodel.photomodel_api.domain.exceptions.LoginFailedException;
+import com.photomodel.photomodel_api.infrastructure.views.LoginApiKeyView;
 import com.photomodel.photomodel_api.usecase.port.input.user.LoginUserProfileUseCase;
 import com.photomodel.photomodel_api.usecase.port.output.UserRepository;
 import com.photomodel.photomodel_api.utils.JasyptUtils;
@@ -22,16 +23,19 @@ public class LoginUserProfileUseCaseService implements LoginUserProfileUseCase {
     private JwtUtil jwtUtil;
 
     @Override
-    public String loginUserProfileUseCase(String username, String password) throws LoginFailedException {
-        String encryptedPassword = jasyptUtils.encryptPassword(password);
+    public LoginApiKeyView loginUserProfileUseCase(String username, String password) throws LoginFailedException {
 
-        User user = userRepository.loginUser(username, encryptedPassword);
+        User user = userRepository.getUsertByUsername(username);
 
         if(user == null){
             throw new LoginFailedException();
         }
 
-        return jwtUtil.generateToken(user);
+        String decryptedUserPassword = jasyptUtils.decryptPassword(user.getPassword());;
+        if(!decryptedUserPassword.equals(password)){
+            throw new LoginFailedException();
+        }
 
+        return new LoginApiKeyView(jwtUtil.generateToken(user));
     }
 }

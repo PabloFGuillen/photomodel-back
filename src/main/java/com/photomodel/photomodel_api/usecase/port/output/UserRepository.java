@@ -24,6 +24,4 @@ public interface UserRepository {
     void uploadPhotoUseCase(List<Image> imageList, String userId);
 
     void updateUser(User user);
-
-    User loginUser(String username, String password);
 }

@@ -79,9 +79,4 @@ public class UserRepositoryImpl implements UserRepository {
         userJpaRepository.updateUser(userJpaEntity);
     }
 
-    @Override
-    public User loginUser(String username, String password) {
-        UserJpaEntity userJpaEntity = userJpaRepository.loginUser(username, password);
-        return userMapper.getDomain(userJpaEntity);
-    }
 }

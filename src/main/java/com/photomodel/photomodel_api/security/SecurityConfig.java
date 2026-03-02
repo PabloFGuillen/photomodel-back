@@ -29,6 +29,7 @@ public class SecurityConfig {
     private UserRepository userRepository;
 
 
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf(csrf -> csrf.disable()) // 1. Deshabilitar CSRF

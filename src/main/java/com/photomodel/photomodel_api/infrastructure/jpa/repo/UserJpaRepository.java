@@ -2,6 +2,7 @@ package com.photomodel.photomodel_api.infrastructure.jpa.repo;
 
 import com.photomodel.photomodel_api.domain.Image;
 import com.photomodel.photomodel_api.infrastructure.jpa.UserJpaEntity;
+import com.photomodel.photomodel_api.utils.JasyptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -15,6 +16,9 @@ public class UserJpaRepository {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    @Autowired
+    private JasyptUtils jasyptUtils;
 
     public void insertUser(UserJpaEntity userJpaEntity){
         mongoTemplate.save(userJpaEntity);
@@ -79,9 +83,5 @@ public class UserJpaRepository {
 
     }
 
-    public UserJpaEntity loginUser(String username, String password){
-        return null;
-
-    }
 
 }

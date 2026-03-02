@@ -2,7 +2,7 @@ package com.photomodel.photomodel_api.domain.exceptions;
 
 public class UserNotFoundException extends Exception{
 
-    private UserNotFoundException (String message){
+    public UserNotFoundException(String message){
         super("User: " + message + "| Not Found");
     }
 }

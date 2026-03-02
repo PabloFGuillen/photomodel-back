@@ -3,6 +3,8 @@ package com.photomodel.photomodel_api.infrastructure.web;
 import com.photomodel.photomodel_api.domain.User;
 import com.photomodel.photomodel_api.domain.exceptions.ExistingUserException;
 import com.photomodel.photomodel_api.domain.exceptions.LoginFailedException;
+import com.photomodel.photomodel_api.domain.exceptions.UserNotFoundException;
+import com.photomodel.photomodel_api.infrastructure.views.LoginApiKeyView;
 import com.photomodel.photomodel_api.usecase.port.input.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,12 +41,12 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    private ResponseEntity<String> getUserProfileUseCase(@RequestParam("username") String username, @RequestParam("password") String password) throws LoginFailedException {
+    private ResponseEntity<LoginApiKeyView> getUserProfileUseCase(@RequestParam("username") String username, @RequestParam("password") String password) throws LoginFailedException {
         return new ResponseEntity<>(loginUserProfileUseCase.loginUserProfileUseCase(username, password), HttpStatus.OK);
     }
 
     @PutMapping("")
-    private ResponseEntity<String> updateUserProfileCase(@RequestBody() User updateUserView){
+    private ResponseEntity<String> updateUserProfileCase(@RequestBody() User updateUserView) throws UserNotFoundException {
         updateUserUseCase.updateUserUseCase(updateUserView);
         return new ResponseEntity<>(HttpStatus.OK);
     }

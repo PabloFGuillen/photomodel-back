@@ -67,7 +67,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         boolean isCreateUser = request.getRequestURI().equals("/user") && request.getMethod().equals("POST");
         System.out.println("Ruta en filtro: " + request.getMethod() + " " + request.getPathInfo()); // ⬅️ AÑADE ESTA LÍNEA
         // Ruta de Login (GET /user/login)
-        boolean isLogin = request.getRequestURI().equals("/user/login") && request.getMethod().equals("GET");
+        boolean isLogin = request.getServletPath().equals("/user/login") && request.getMethod().equals("GET") ;
 
         return isCreateUser || isLogin;
     }

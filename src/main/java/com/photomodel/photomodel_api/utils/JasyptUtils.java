@@ -22,11 +22,22 @@ public class JasyptUtils {
 
 
     public String encryptPassword(String password){
-        return textEncryptor.encrypt(password);
+        if(password != null){
+            return textEncryptor.encrypt(password);
+
+        } else {
+            return null;
+        }
     }
 
     public String decryptPassword(String encryptedPassword){
-        return textEncryptor.decrypt(encryptedPassword);
+        if(encryptedPassword != null){
+            return textEncryptor.decrypt(encryptedPassword);
+
+        } else {
+
+            return null;
+        }
 
     }
 }
