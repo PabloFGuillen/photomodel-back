@@ -5,6 +5,7 @@ import com.photomodel.photomodel_api.utils.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -33,7 +34,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // 1. Deshabilitar CSRF
                 .authorizeHttpRequests(auth -> auth
                         // 2. Rutas públicas (ejemplo: login y registro)
-                        .requestMatchers("/user", "/user/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/user/login").permitAll()
                         // 3. Rutas protegidas (todas las demás requieren autenticación)
                         .anyRequest().authenticated()
                 )
