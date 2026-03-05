@@ -4,5 +4,5 @@ import com.photomodel.photomodel_api.domain.User;
 
 public interface GetUserProfileUseCase {
 
-    User getUserProfileById(Long userId);
+    User getUserProfileById(String userId);
 }

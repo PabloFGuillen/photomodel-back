@@ -1,6 +1,8 @@
 package com.photomodel.photomodel_api.usecase.service.user;
 
+import com.photomodel.photomodel_api.domain.exceptions.CreateUserObligatoryInformationNotSettedExeption;
 import com.photomodel.photomodel_api.domain.exceptions.ExistingUserException;
+import com.photomodel.photomodel_api.utils.ErrorMessageConstants;
 import com.photomodel.photomodel_api.utils.JasyptUtils;
 import com.photomodel.photomodel_api.domain.User;
 import com.photomodel.photomodel_api.usecase.port.input.user.CreateUserUseCase;
@@ -19,22 +21,27 @@ public class CreateUserUseCaseService implements CreateUserUseCase {
     @Autowired
     private JasyptUtils jasyptUtils;
 
-    public User createUser(String username, String email, String password, UserType level, UserRole rol) throws ExistingUserException{
+    public User createUser(String username, String email, String password, UserType level, UserRole rol) throws ExistingUserException, CreateUserObligatoryInformationNotSettedExeption {
 
         User user = null;
-        boolean existsUsername = userRepository.existsUserByUsername(username);
-        boolean existsEmail = userRepository.existsUserByEmail(email);
-        if(!existsUsername && !existsEmail){
-            password = jasyptUtils.encryptPassword(password);
-            user = new User(null, username, email, password, level, rol, false, null);
-            userRepository.save(user);
-        } else {
-            if(existsEmail) {
-                throw new ExistingUserException("Email is alredy associated to user");
+        if(username != null && email != null && password != null && level != null && rol != null){
+            boolean existsUsername = userRepository.existsUserByUsername(username);
+            boolean existsEmail = userRepository.existsUserByEmail(email);
+            if(!existsUsername && !existsEmail){
+                password = jasyptUtils.encryptPassword(password);
+                user = new User(null, username, email, password, level, rol, false, null);
+                userRepository.save(user);
+            } else {
+                if(existsEmail) {
+                    throw new ExistingUserException(ErrorMessageConstants.EXISTING_EMAIL_ERROR);
 
-            } else if(existsUsername){
-                throw new ExistingUserException("Username alredy existing");
+                } else {
+                    throw new ExistingUserException(ErrorMessageConstants.EXISTING_USER_ERROR);
+                }
             }
+
+        } else {
+            throw new CreateUserObligatoryInformationNotSettedExeption();
         }
 
         return user;

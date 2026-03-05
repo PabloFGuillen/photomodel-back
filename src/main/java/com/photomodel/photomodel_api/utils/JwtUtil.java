@@ -27,6 +27,8 @@ public class JwtUtil {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", user.getId());
         claims.put("role", user.getRole());
+        claims.put("username", user.getUsername());
+        claims.put("email", user.getEmail());
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(user.getUsername())
@@ -49,6 +51,10 @@ public class JwtUtil {
         return extractAllClaims(token).getSubject();
     }
 
+    public String extractId(String token){
+        return extractAllClaims(token).get("id", String.class);
+    }
+
     private Key getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
         return Keys.hmacShaKeyFor(keyBytes);
@@ -59,6 +65,6 @@ public class JwtUtil {
     }
 
     private boolean extractExpiration(String token){
-        return extractAllClaims(token).getExpiration().before(new Date());
+        return extractAllClaims(token).getExpiration().after(new Date());
     }
 }

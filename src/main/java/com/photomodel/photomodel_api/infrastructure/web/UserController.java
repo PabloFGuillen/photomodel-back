@@ -1,9 +1,7 @@
 package com.photomodel.photomodel_api.infrastructure.web;
 
 import com.photomodel.photomodel_api.domain.User;
-import com.photomodel.photomodel_api.domain.exceptions.ExistingUserException;
-import com.photomodel.photomodel_api.domain.exceptions.LoginFailedException;
-import com.photomodel.photomodel_api.domain.exceptions.UserNotFoundException;
+import com.photomodel.photomodel_api.domain.exceptions.*;
 import com.photomodel.photomodel_api.infrastructure.views.LoginApiKeyView;
 import com.photomodel.photomodel_api.usecase.port.input.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +32,7 @@ public class UserController {
     private LoginUserProfileUseCase loginUserProfileUseCase;
 
     @PostMapping("")
-    private ResponseEntity<HttpStatus> createUser(@RequestBody() User createUserView) throws ExistingUserException {
+    private ResponseEntity<HttpStatus> createUser(@RequestBody() User createUserView) throws ExistingUserException, CreateUserObligatoryInformationNotSettedExeption {
         createUserUseCase.createUser(createUserView.getUsername(), createUserView.getEmail(), createUserView.getPassword(), createUserView.getLevel(), createUserView.getRole());
         return new ResponseEntity<>(HttpStatus.OK);
 
@@ -46,7 +44,7 @@ public class UserController {
     }
 
     @PutMapping("")
-    private ResponseEntity<String> updateUserProfileCase(@RequestBody() User updateUserView) throws UserNotFoundException {
+    private ResponseEntity<String> updateUserProfileCase(@RequestBody() User updateUserView) throws UserNotFoundException, ProhibitedModicationOnUserException, ExistingUserException {
         updateUserUseCase.updateUserUseCase(updateUserView);
         return new ResponseEntity<>(HttpStatus.OK);
     }

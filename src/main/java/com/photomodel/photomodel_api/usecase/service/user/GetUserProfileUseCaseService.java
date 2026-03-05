@@ -13,7 +13,7 @@ public class GetUserProfileUseCaseService implements GetUserProfileUseCase {
     private UserRepository userRepository;
 
     @Override
-    public User getUserProfileById(Long userId) {
+    public User getUserProfileById(String userId) {
         User user = userRepository.getUserById(userId);
         return user;
     }

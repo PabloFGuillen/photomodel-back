@@ -41,7 +41,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User getUserById(Long id) {
+    public User getUserById(String id) {
         UserJpaEntity userJpaEntity = userJpaRepository.getUserById(id);
         return userMapper.getDomain(userJpaEntity);
     }

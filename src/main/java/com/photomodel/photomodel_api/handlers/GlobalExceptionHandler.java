@@ -1,8 +1,6 @@
 package com.photomodel.photomodel_api.handlers;
 
-import com.photomodel.photomodel_api.domain.exceptions.ExistingUserException;
-import com.photomodel.photomodel_api.domain.exceptions.LoginFailedException;
-import com.photomodel.photomodel_api.domain.exceptions.UserNotFoundException;
+import com.photomodel.photomodel_api.domain.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -41,5 +39,26 @@ public class GlobalExceptionHandler {
                 .body(body);
 
     }
+
+    @ExceptionHandler(ProhibitedModicationOnUserException.class)
+    public ResponseEntity<Map<String, String>> handlerProhibitedModicationOnUser(ProhibitedModicationOnUserException ex){
+        Map<String, String> body = Map.of("error", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(body);
+
+    }
+
+    @ExceptionHandler(CreateUserObligatoryInformationNotSettedExeption.class)
+    public ResponseEntity<Map<String, String>> handlerCreateUserObligatoryInformationNotSettedExeption(ProhibitedModicationOnUserException ex){
+        Map<String, String> body = Map.of("error", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(body);
+
+    }
+
 
 }

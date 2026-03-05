@@ -13,7 +13,7 @@ public interface UserRepository {
 
     User getUserByEmail(String email);
 
-    User getUserById(Long id);
+    User getUserById(String id);
 
     User getUsertByUsername(String username);
 

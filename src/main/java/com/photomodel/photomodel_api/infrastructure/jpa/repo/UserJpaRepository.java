@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class UserJpaRepository {
         return mongoTemplate.findOne(query, UserJpaEntity.class);
     }
 
-    public UserJpaEntity getUserById(Long id){
+    public UserJpaEntity getUserById(String id){
         Query query = new Query();
         query.addCriteria(Criteria.where("id").is(id));
 
@@ -80,7 +81,7 @@ public class UserJpaRepository {
     }
 
     public void updateUser(UserJpaEntity user){
-
+        mongoTemplate.save(user);
     }
 
 
