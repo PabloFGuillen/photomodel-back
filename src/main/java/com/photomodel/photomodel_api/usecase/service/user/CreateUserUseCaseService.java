@@ -1,6 +1,6 @@
 package com.photomodel.photomodel_api.usecase.service.user;
 
-import com.photomodel.photomodel_api.domain.exceptions.CreateUserObligatoryInformationNotSettedExeption;
+import com.photomodel.photomodel_api.domain.exceptions.ValidationException;
 import com.photomodel.photomodel_api.domain.exceptions.ExistingUserException;
 import com.photomodel.photomodel_api.utils.ErrorMessageConstants;
 import com.photomodel.photomodel_api.utils.JasyptUtils;
@@ -21,7 +21,7 @@ public class CreateUserUseCaseService implements CreateUserUseCase {
     @Autowired
     private JasyptUtils jasyptUtils;
 
-    public User createUser(String username, String email, String password, UserType level, UserRole rol) throws ExistingUserException, CreateUserObligatoryInformationNotSettedExeption {
+    public User createUser(String username, String email, String password, UserType level, UserRole rol) throws ExistingUserException, ValidationException {
 
         User user = null;
         if(username != null && email != null && password != null && level != null && rol != null){
@@ -41,7 +41,7 @@ public class CreateUserUseCaseService implements CreateUserUseCase {
             }
 
         } else {
-            throw new CreateUserObligatoryInformationNotSettedExeption();
+            throw new ValidationException(ErrorMessageConstants.CREATE_USER_VALIDATION_ERROR);
         }
 
         return user;

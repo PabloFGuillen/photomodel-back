@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.Instant;
+
 @Document(collection = "Project")
 public class ProjectJpaEntity {
 
@@ -19,7 +21,7 @@ public class ProjectJpaEntity {
 
     private GeoJsonPoint geoLocation;
 
-    private Long date;
+    private Instant date;
 
     private boolean paidProject;
 
@@ -66,11 +68,11 @@ public class ProjectJpaEntity {
         this.geoLocation = geoLocation;
     }
 
-    public Long getDate() {
+    public Instant getDate() {
         return date;
     }
 
-    public void setDate(Long date) {
+    public void setDate(Instant date) {
         this.date = date;
     }
 

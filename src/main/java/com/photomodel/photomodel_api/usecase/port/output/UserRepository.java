@@ -15,7 +15,7 @@ public interface UserRepository {
 
     User getUserById(String id);
 
-    User getUsertByUsername(String username);
+    User getUserByUsername(String username);
 
     boolean existsUserByEmail(String email);
 
@@ -24,4 +24,6 @@ public interface UserRepository {
     void uploadPhotoUseCase(List<Image> imageList, String userId);
 
     void updateUser(User user);
+
+    List<User> searchUsersByUsername(String username);
 }

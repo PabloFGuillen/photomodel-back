@@ -5,6 +5,8 @@ import com.photomodel.photomodel_api.utils.enums.UserRole;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.Instant;
+
 @Document(collection = "Application")
 public class ApplicationJpaEntity {
 
@@ -19,7 +21,7 @@ public class ApplicationJpaEntity {
 
     private UserRole role;
 
-    private Long applicationDate;
+    private Instant applicationDate;
 
     public String getId() {
         return id;
@@ -61,11 +63,11 @@ public class ApplicationJpaEntity {
         this.role = role;
     }
 
-    public Long getApplicationDate() {
+    public Instant getApplicationDate() {
         return applicationDate;
     }
 
-    public void setApplicationDate(Long applicationDate) {
+    public void setApplicationDate(Instant applicationDate) {
         this.applicationDate = applicationDate;
     }
 }

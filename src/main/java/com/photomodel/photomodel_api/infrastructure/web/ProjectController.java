@@ -1,6 +1,8 @@
 package com.photomodel.photomodel_api.infrastructure.web;
 
 import com.photomodel.photomodel_api.domain.Project;
+import com.photomodel.photomodel_api.domain.exceptions.ValidationException;
+import com.photomodel.photomodel_api.infrastructure.views.CreateProjectView;
 import com.photomodel.photomodel_api.usecase.port.input.project.CreateProjectUseCase;
 import com.photomodel.photomodel_api.usecase.port.input.project.GetProjectDetailsUseCase;
 import com.photomodel.photomodel_api.usecase.port.input.project.ListProjectsUseCase;
@@ -25,8 +27,8 @@ public class ProjectController {
     @Autowired
     private ListProjectsUseCase projectsUseCase;
 
-    @PostMapping
-    public ResponseEntity<HttpStatus> saveProject(@RequestBody Project createProjectView){
+    @PostMapping("")
+    public ResponseEntity<HttpStatus> saveProject(@RequestBody CreateProjectView createProjectView) throws ValidationException {
         createProjectUseCase.createProjectUseCase(createProjectView);
         return new ResponseEntity<>(HttpStatus.OK);
     }

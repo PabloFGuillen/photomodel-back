@@ -22,7 +22,7 @@ public class JoinProjectAsPhotographerUseCaseService implements JoinProjectAsPho
         application.setRole(UserRole.PHOTOGRAPHER);
         application.setUserId(userId);
         application.setStatus(ProjectStatus.PENDING);
-        application.setApplicationDate(Instant.now().toEpochMilli());
+        application.setApplicationDate(Instant.now());
         application.setProjectId(projectId);
         applicationRepository.insertApplication(application);
     }

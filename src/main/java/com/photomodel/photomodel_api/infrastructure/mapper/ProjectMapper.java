@@ -1,5 +1,6 @@
 package com.photomodel.photomodel_api.infrastructure.mapper;
 
+import com.photomodel.photomodel_api.domain.Location;
 import com.photomodel.photomodel_api.domain.Project;
 import com.photomodel.photomodel_api.infrastructure.jpa.ProjectJpaEntity;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
@@ -19,8 +20,9 @@ public class ProjectMapper {
         projectJpaEntity.setDescription(project.getDescription());
         projectJpaEntity.setTitle(project.getTitle());
         projectJpaEntity.setDate(project.getDate());
-        if(project.getLatitude() != null && project.getLatitude() != null){
-            GeoJsonPoint geoJsonPoint = new GeoJsonPoint(project.getLongitude(), project.getLatitude());
+        Location location = project.getLocation();
+        if(location != null){
+            GeoJsonPoint geoJsonPoint = new GeoJsonPoint(location.getLongitude(), location.getLatitude());
             projectJpaEntity.setGeoLocation(geoJsonPoint);
         }
 
@@ -35,10 +37,13 @@ public class ProjectMapper {
         projectJpaEntity.setDescription(project.getDescription());
         projectJpaEntity.setTitle(project.getTitle());
         projectJpaEntity.setDate(project.getDate());
-        if(projectJpaEntity.getGeoLocation() != null){
-            GeoJsonPoint geoJsonPoint = projectJpaEntity.getGeoLocation();
-            project.setLatitude(geoJsonPoint.getY());
-            project.setLongitude(geoJsonPoint.getX());
+
+        GeoJsonPoint geoJsonPoint = projectJpaEntity.getGeoLocation();
+        if(geoJsonPoint != null){
+            Location location = new Location();
+            location.setLatitude(geoJsonPoint.getY());
+            location.setLongitude(geoJsonPoint.getX());
+            project.setLocation(location);
         }
         return project;
     }

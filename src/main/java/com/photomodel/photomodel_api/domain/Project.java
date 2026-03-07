@@ -3,6 +3,8 @@ package com.photomodel.photomodel_api.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
+
 @Getter
 @Setter
 public class Project {
@@ -13,13 +15,9 @@ public class Project {
 
     private String description;
 
-    private String location;
+    private Location location;
 
-    private Double latitude;
-    private Double longitude;
-
-
-    private Long date;
+    private Instant date;
 
     private boolean paidProject = false;
 
@@ -28,7 +26,7 @@ public class Project {
     public Project() {
     }
 
-    public Project(String id, String title, String description, String location, Long date, boolean paidProject, String userId) {
+    public Project(String id, String title, String description, Location location, Instant date, boolean paidProject, String userId) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -62,19 +60,11 @@ public class Project {
         this.description = description;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public Long getDate() {
+    public Instant getDate() {
         return date;
     }
 
-    public void setDate(Long date) {
+    public void setDate(Instant date) {
         this.date = date;
     }
 
@@ -94,19 +84,11 @@ public class Project {
         this.userId = userId;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

@@ -3,6 +3,8 @@ package com.photomodel.photomodel_api.domain;
 import com.photomodel.photomodel_api.utils.enums.ProjectStatus;
 import com.photomodel.photomodel_api.utils.enums.UserRole;
 
+import java.time.Instant;
+
 public class Application {
 
     private String id;
@@ -15,12 +17,12 @@ public class Application {
 
     private UserRole role;
 
-    private Long applicationDate;
+    private Instant applicationDate;
 
     public Application() {
     }
 
-    public Application(String id, String userId, String projectId, ProjectStatus status, Long applicationDate) {
+    public Application(String id, String userId, String projectId, ProjectStatus status, Instant applicationDate) {
         this.id = id;
         this.userId = userId;
         this.projectId = projectId;
@@ -60,11 +62,11 @@ public class Application {
         this.status = status;
     }
 
-    public Long getApplicationDate() {
+    public Instant getApplicationDate() {
         return applicationDate;
     }
 
-    public void setApplicationDate(Long applicationDate) {
+    public void setApplicationDate(Instant applicationDate) {
         this.applicationDate = applicationDate;
     }
 

@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
 
     }
 
-    @ExceptionHandler(CreateUserObligatoryInformationNotSettedExeption.class)
+    @ExceptionHandler(ValidationException.class)
     public ResponseEntity<Map<String, String>> handlerCreateUserObligatoryInformationNotSettedExeption(ProhibitedModicationOnUserException ex){
         Map<String, String> body = Map.of("error", ex.getMessage());
 

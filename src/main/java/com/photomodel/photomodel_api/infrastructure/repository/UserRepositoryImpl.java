@@ -47,7 +47,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User getUsertByUsername(String username) {
+    public User getUserByUsername(String username) {
         UserJpaEntity userJpaEntity = userJpaRepository.getUsertByUsername(username);
         return userMapper.getDomain(userJpaEntity);
     }
@@ -79,4 +79,15 @@ public class UserRepositoryImpl implements UserRepository {
         userJpaRepository.updateUser(userJpaEntity);
     }
 
+    @Override
+    public List<User> searchUsersByUsername(String username) {
+        List<User> usersList = new ArrayList<>();
+        List<UserJpaEntity> userJpaEntity = userJpaRepository.getUsersWithUsername(username);
+        if(userJpaEntity != null){
+            for(UserJpaEntity userInfo: userJpaEntity){
+                usersList.add(userMapper.getDomain(userInfo));
+            }
+        }
+        return usersList;
+    }
 }

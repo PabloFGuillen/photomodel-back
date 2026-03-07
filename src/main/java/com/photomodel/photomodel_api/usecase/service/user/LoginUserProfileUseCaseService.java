@@ -25,7 +25,7 @@ public class LoginUserProfileUseCaseService implements LoginUserProfileUseCase {
     @Override
     public LoginApiKeyView loginUserProfileUseCase(String username, String password) throws LoginFailedException {
 
-        User user = userRepository.getUsertByUsername(username);
+        User user = userRepository.getUserByUsername(username);
 
         if(user == null){
             throw new LoginFailedException();

@@ -21,7 +21,7 @@ public class JoinProjectAsModelUseCaseService implements JoinProjectAsModelUseCa
         Application application = new Application();
         application.setProjectId(project);
         application.setUserId(userId);
-        application.setApplicationDate(Instant.now().toEpochMilli());
+        application.setApplicationDate(Instant.now());
         application.setStatus(ProjectStatus.PENDING);
         application.setRole(UserRole.MODEL);
         applicationRepository.insertApplication(application);

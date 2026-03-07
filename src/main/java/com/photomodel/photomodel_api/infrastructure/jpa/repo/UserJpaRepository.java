@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -84,5 +85,11 @@ public class UserJpaRepository {
         mongoTemplate.save(user);
     }
 
+    public List<UserJpaEntity> getUsersWithUsername(String username){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("userName").regex(username, "i"));
+
+        return mongoTemplate.find(query, UserJpaEntity.class);
+    }
 
 }

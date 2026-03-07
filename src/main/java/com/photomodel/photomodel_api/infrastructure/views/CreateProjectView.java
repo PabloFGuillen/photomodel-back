@@ -1,6 +1,9 @@
 package com.photomodel.photomodel_api.infrastructure.views;
 
+import com.photomodel.photomodel_api.domain.Location;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+
+import java.time.Instant;
 
 public class CreateProjectView {
 
@@ -8,16 +11,11 @@ public class CreateProjectView {
 
     private String description;
 
-    private String location;
+    private Location location;
 
+    private Instant date;
 
-    private GeoJsonPoint geoLocation;
-
-    private Long date;
-
-    private boolean paidProject;
-
-    private String userId;
+    private boolean paidProject = false;
 
     public String getTitle() {
         return title;
@@ -35,30 +33,6 @@ public class CreateProjectView {
         this.description = description;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public GeoJsonPoint getGeoLocation() {
-        return geoLocation;
-    }
-
-    public void setGeoLocation(GeoJsonPoint geoLocation) {
-        this.geoLocation = geoLocation;
-    }
-
-    public Long getDate() {
-        return date;
-    }
-
-    public void setDate(Long date) {
-        this.date = date;
-    }
-
     public boolean isPaidProject() {
         return paidProject;
     }
@@ -67,11 +41,19 @@ public class CreateProjectView {
         this.paidProject = paidProject;
     }
 
-    public String getUserId() {
-        return userId;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Instant getDate() {
+        return date;
+    }
+
+    public void setDate(Instant date) {
+        this.date = date;
     }
 }
