@@ -12,7 +12,7 @@ public class UserMapper {
         UserJpaEntity userJpaEntity = new UserJpaEntity();
         userJpaEntity.setId(user.getId());
         userJpaEntity.setRole(user.getRole());
-        userJpaEntity.setUserName(user.getUsername());
+        userJpaEntity.setUsername(user.getUsername());
         userJpaEntity.setEmail(user.getEmail());
         userJpaEntity.setLevel(user.getLevel());
         userJpaEntity.setPassword(user.getPassword());
@@ -26,7 +26,7 @@ public class UserMapper {
         User user = new User();
         user.setId(userJpa.getId());
         user.setRole(userJpa.getRole());
-        user.setUsername(userJpa.getUserName());
+        user.setUsername(userJpa.getUsername());
         user.setEmail(userJpa.getEmail());
         user.setLevel(userJpa.getLevel());
         user.setPassword(userJpa.getPassword());

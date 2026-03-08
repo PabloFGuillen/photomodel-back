@@ -42,7 +42,7 @@ public class UserJpaRepository {
 
     public UserJpaEntity getUsertByUsername(String username){
         Query query = new Query();
-        query.addCriteria(Criteria.where("userName").is(username));
+        query.addCriteria(Criteria.where("username").is(username));
 
         return mongoTemplate.findOne(query, UserJpaEntity.class);
     }
@@ -66,7 +66,7 @@ public class UserJpaRepository {
         boolean existsUsertWithEmail = false;
 
         Query query = new Query();
-        query.addCriteria(Criteria.where("userName").is(username));
+        query.addCriteria(Criteria.where("username").is(username));
 
         UserJpaEntity userJpaEntity = mongoTemplate.findOne(query, UserJpaEntity.class);
         if(userJpaEntity != null){
@@ -87,7 +87,7 @@ public class UserJpaRepository {
 
     public List<UserJpaEntity> getUsersWithUsername(String username){
         Query query = new Query();
-        query.addCriteria(Criteria.where("userName").regex(username, "i"));
+        query.addCriteria(Criteria.where("username").regex(username, "i"));
 
         return mongoTemplate.find(query, UserJpaEntity.class);
     }
