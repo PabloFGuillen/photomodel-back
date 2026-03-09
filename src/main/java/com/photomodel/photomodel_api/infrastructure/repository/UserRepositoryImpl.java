@@ -37,19 +37,33 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User getUserByEmail(String email) {
         UserJpaEntity userJpaEntity = userJpaRepository.getUserByEmail(email);
-        return userMapper.getDomain(userJpaEntity);
+        if(userJpaEntity != null){
+            return userMapper.getDomain(userJpaEntity);
+
+        } else {
+            return null;
+
+        }
     }
 
     @Override
     public User getUserById(String id) {
         UserJpaEntity userJpaEntity = userJpaRepository.getUserById(id);
-        return userMapper.getDomain(userJpaEntity);
+        if(userJpaEntity != null){
+            return userMapper.getDomain(userJpaEntity);
+        } else {
+            return null;
+        }
     }
 
     @Override
     public User getUserByUsername(String username) {
         UserJpaEntity userJpaEntity = userJpaRepository.getUsertByUsername(username);
-        return userMapper.getDomain(userJpaEntity);
+        if(userJpaEntity != null){
+            return userMapper.getDomain(userJpaEntity);
+        } else {
+            return null;
+        }
     }
 
     @Override

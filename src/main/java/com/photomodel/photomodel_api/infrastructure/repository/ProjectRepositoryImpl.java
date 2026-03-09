@@ -12,6 +12,7 @@ import com.photomodel.photomodel_api.usecase.port.output.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.List;
 
 @Repository
@@ -42,8 +43,8 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     }
 
     @Override
-    public List<Project> getProjectListNearLocation(Double latitude, Double longitude, Integer kilometers) {
-        List<ProjectJpaEntity> projectJpaEntity = projectJpaRepository.getProjectListNearLocation(latitude, longitude, kilometers);
+    public List<Project> getProjectListNearLocation(String title, String username, Integer distances, Boolean paid, Instant date, Double latitude, Double longitude) {
+        List<ProjectJpaEntity> projectJpaEntity = projectJpaRepository.getProjectListNearLocation(title, username, distances, paid, date, latitude, longitude);
         return projectMapper.toDomainList(projectJpaEntity);
     }
 

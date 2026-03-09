@@ -18,7 +18,7 @@ public class UserMapper {
         userJpaEntity.setPassword(user.getPassword());
         userJpaEntity.setImageList(user.getImageList());
         userJpaEntity.setEmailValidated(user.getEmailValidated());
-
+        userJpaEntity.setActive(user.getActive());
         return userJpaEntity;
     }
 
@@ -32,6 +32,7 @@ public class UserMapper {
         user.setPassword(userJpa.getPassword());
         user.setImageList(userJpa.getImageList());
         user.setEmailValidated(userJpa.getEmailValidated());
+        user.setActive(userJpa.getActive());
         return user;
     }
 }

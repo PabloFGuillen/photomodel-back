@@ -4,6 +4,8 @@ import com.photomodel.photomodel_api.domain.User;
 import com.photomodel.photomodel_api.domain.exceptions.ExistingUserException;
 import com.photomodel.photomodel_api.domain.exceptions.ProhibitedModicationOnUserException;
 import com.photomodel.photomodel_api.domain.exceptions.UserNotFoundException;
+import com.photomodel.photomodel_api.infrastructure.views.CreateUserView;
+import com.photomodel.photomodel_api.usecase.port.input.user.CreateUserUseCase;
 import com.photomodel.photomodel_api.usecase.port.input.user.UpdateUserUseCase;
 import com.photomodel.photomodel_api.usecase.port.output.UserRepository;
 import com.photomodel.photomodel_api.utils.ErrorMessageConstants;
@@ -24,7 +26,7 @@ public class UpdateUserUseCaseService implements UpdateUserUseCase {
     private JwtUtil jwtUtil;
 
     @Override
-    public void updateUserUseCase(User user) throws UserNotFoundException, ProhibitedModicationOnUserException, ExistingUserException {
+    public void updateUserUseCase(CreateUserView user) throws UserNotFoundException, ProhibitedModicationOnUserException, ExistingUserException {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User authenticatedUser = (User) auth.getPrincipal();

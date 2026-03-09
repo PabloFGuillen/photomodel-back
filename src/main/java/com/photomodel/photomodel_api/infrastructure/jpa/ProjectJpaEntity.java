@@ -2,6 +2,8 @@ package com.photomodel.photomodel_api.infrastructure.jpa;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
@@ -16,9 +18,7 @@ public class ProjectJpaEntity {
 
     private String description;
 
-    private String location;
-
-
+    @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
     private GeoJsonPoint geoLocation;
 
     private Instant date;
@@ -50,15 +50,6 @@ public class ProjectJpaEntity {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
 
     public GeoJsonPoint getGeoLocation() {
         return geoLocation;

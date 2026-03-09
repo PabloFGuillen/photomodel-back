@@ -33,6 +33,7 @@ public class UserJpaEntity {
     private List<Image> imageList = new ArrayList<>();
 
 
+    private Boolean active = true;
     public Boolean getEmailValidated() {
         return emailValidated;
     }
@@ -95,5 +96,13 @@ public class UserJpaEntity {
 
     public void setImageList(List<Image> imageList) {
         this.imageList = imageList;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

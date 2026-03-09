@@ -13,7 +13,7 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(ExistingUserException.class)
-    public ResponseEntity<Map<String, String>> handleExistingUser(ExistingUserException ex) {
+    public ResponseEntity<Map<String, String>> handleExistingUserException(ExistingUserException ex) {
         Map<String, String> body = Map.of("error", ex.getMessage());
 
         return ResponseEntity
@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(LoginFailedException.class)
-    public ResponseEntity<Map<String, String>> handleLoginFailed(ExistingUserException ex) {
+    public ResponseEntity<Map<String, String>> handleLoginFailedException(LoginFailedException ex) {
         Map<String, String> body = Map.of("error", ex.getMessage());
 
         return ResponseEntity
@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleUserNotFound(UserNotFoundException ex){
+    public ResponseEntity<Map<String, String>> handleUserNotFoundException(UserNotFoundException ex){
         Map<String, String> body = Map.of("error", ex.getMessage());
 
         return ResponseEntity
@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ProhibitedModicationOnUserException.class)
-    public ResponseEntity<Map<String, String>> handlerProhibitedModicationOnUser(ProhibitedModicationOnUserException ex){
+    public ResponseEntity<Map<String, String>> handlerProhibitedModicationOnUserException(ProhibitedModicationOnUserException ex){
         Map<String, String> body = Map.of("error", ex.getMessage());
 
         return ResponseEntity
@@ -51,7 +51,37 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ValidationException.class)
-    public ResponseEntity<Map<String, String>> handlerCreateUserObligatoryInformationNotSettedExeption(ProhibitedModicationOnUserException ex){
+    public ResponseEntity<Map<String, String>> handlerCreateUserObligatoryInformationNotSettedExeption(ValidationException ex){
+        Map<String, String> body = Map.of("error", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(body);
+
+    }
+
+    @ExceptionHandler(ModelCreatingProjectException.class)
+    public ResponseEntity<Map<String, String>> handlerModelCreatingProjectException(ModelCreatingProjectException ex){
+        Map<String, String> body = Map.of("error", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(body);
+
+    }
+
+    @ExceptionHandler(LatitudeLongitudeCannotBeNullException.class)
+    public ResponseEntity<Map<String, String>> handlerLongitudeLatitudeCannotBeNullException(LatitudeLongitudeCannotBeNullException ex){
+        Map<String, String> body = Map.of("error", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(body);
+
+    }
+
+    @ExceptionHandler(DistanceCannotBeNullException.class)
+    public ResponseEntity<Map<String, String>> handlerDistanceCannotBeNullException(DistanceCannotBeNullException ex){
         Map<String, String> body = Map.of("error", ex.getMessage());
 
         return ResponseEntity

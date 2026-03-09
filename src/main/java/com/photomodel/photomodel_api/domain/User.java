@@ -26,6 +26,7 @@ public class User {
 
     private Boolean emailValidated;
 
+    private Boolean active = true;
     private List<Image> imageList = new ArrayList<>();
 
     public User() {
@@ -104,5 +105,13 @@ public class User {
 
     public void setEmailValidated(Boolean emailValidated) {
         this.emailValidated = emailValidated;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

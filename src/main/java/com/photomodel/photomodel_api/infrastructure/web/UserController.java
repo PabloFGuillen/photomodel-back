@@ -2,6 +2,7 @@ package com.photomodel.photomodel_api.infrastructure.web;
 
 import com.photomodel.photomodel_api.domain.User;
 import com.photomodel.photomodel_api.domain.exceptions.*;
+import com.photomodel.photomodel_api.infrastructure.views.CreateUserView;
 import com.photomodel.photomodel_api.infrastructure.views.LoginApiKeyView;
 import com.photomodel.photomodel_api.infrastructure.views.UserView;
 import com.photomodel.photomodel_api.usecase.port.input.user.*;
@@ -48,7 +49,7 @@ public class UserController {
     }
 
     @PutMapping("")
-    private ResponseEntity<String> updateUserProfileCase(@RequestBody() User updateUserView) throws UserNotFoundException, ProhibitedModicationOnUserException, ExistingUserException {
+    private ResponseEntity<String> updateUserProfileCase(@RequestBody() CreateUserView updateUserView) throws UserNotFoundException, ProhibitedModicationOnUserException, ExistingUserException {
         updateUserUseCase.updateUserUseCase(updateUserView);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -61,8 +62,8 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    private ResponseEntity<UserView> getUserByUsername(@PathVariable String username) throws UserNotFoundException {
-        return new ResponseEntity<>(getUserUseCase.getUserByUsername(username), HttpStatus.OK);
+    private ResponseEntity<UserView> getUserByUsername(@PathVariable(value = "username") String username) throws UserNotFoundException {
+            return new ResponseEntity<>(getUserUseCase.getUserByUsername(username), HttpStatus.OK);
     }
 
 
