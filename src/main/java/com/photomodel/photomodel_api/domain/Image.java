@@ -6,6 +6,8 @@ public class Image {
 
     private String url;
 
+    private Boolean mainPicture = false;
+
     public String getUserId() {
         return userId;
     }
@@ -20,5 +22,13 @@ public class Image {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Boolean getMainPicture() {
+        return mainPicture;
+    }
+
+    public void setMainPicture(Boolean mainPicture) {
+        this.mainPicture = mainPicture;
     }
 }

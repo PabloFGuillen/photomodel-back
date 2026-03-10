@@ -19,7 +19,9 @@ public class Project {
 
     private Instant date;
 
-    private boolean paidProject = false;
+    private Boolean paidProject = false;
+
+    private Boolean closedProject = false;
 
     private String userId;
 
@@ -68,13 +70,8 @@ public class Project {
         this.date = date;
     }
 
-    public boolean isPaidProject() {
-        return paidProject;
-    }
 
-    public void setPaidProject(boolean paidProject) {
-        this.paidProject = paidProject;
-    }
+
 
     public String getUserId() {
         return userId;
@@ -90,5 +87,21 @@ public class Project {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public Boolean getPaidProject() {
+        return paidProject;
+    }
+
+    public void setPaidProject(Boolean paidProject) {
+        this.paidProject = paidProject;
+    }
+
+    public Boolean getClosedProject() {
+        return closedProject;
+    }
+
+    public void setClosedProject(Boolean closedProject) {
+        this.closedProject = closedProject;
     }
 }

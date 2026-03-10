@@ -15,7 +15,7 @@ public interface ProjectRepository {
 
     Project getProject(String projectId);
 
-    List<Project> getProjectListNearLocation(String title, String username, Integer distances, Boolean paid, Instant date, Double latitude, Double longitude);
+    List<Project> getProjectListNearLocation(Integer page, String title, String username, Integer distances, Boolean paid, Instant date, Double latitude, Double longitude);
 
     List<Application> getProjectApplications(String projectId, String role);
 }

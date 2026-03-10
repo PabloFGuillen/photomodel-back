@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -32,31 +33,52 @@ public class ProjectJpaRepository {
         return mongoTemplate.findOne(query, ProjectJpaEntity.class);
     }
 
-    public List<ProjectJpaEntity> getProjectListNearLocation(String title, String username, Integer distance, Boolean paid, Instant date, Double latitude, Double longitude){
+    public List<ProjectJpaEntity> getProjectListNearLocation(Integer page, String title, String username, Integer distance, Boolean paid, Instant date, Double latitude, Double longitude){
         Query query = new Query();
 
+        // 1️⃣ GeoPoint correcto
         GeoJsonPoint point = new GeoJsonPoint(longitude, latitude);
-        Distance distanceDto = new Distance(10, Metrics.KILOMETERS);
-        query.addCriteria(Criteria.where("geoLocation").nearSphere(point).maxDistance(distanceDto.getNormalizedValue()));
+        Distance mongoDistance = new Distance(10*1000, Metrics.NEUTRAL);
 
-        if(title != null){
+        query.addCriteria(
+                Criteria.where("geoLocation")
+                        .nearSphere(point)
+                        .maxDistance(mongoDistance.getNormalizedValue())
+        );
+
+        // 2️⃣ Filtro por proyecto abierto
+        query.addCriteria(Criteria.where("closedProject").is(false));
+
+        // 3️⃣ Filtro opcional por título
+        if (title != null && !title.isEmpty()) {
             query.addCriteria(Criteria.where("title").is(title));
         }
 
-        if(username != null){
-            query.addCriteria(Criteria.where("username").is(username));
+        // 4️⃣ Filtro opcional por username
+        if (username != null && !username.isEmpty()) {
+            query.addCriteria(Criteria.where("userId").is(username)); // si el username es userId
         }
 
-        if(date != null){
-            query.addCriteria(Criteria.where("date").is(date));
+        // 5️⃣ Filtro opcional por fecha (por día)
+        if (date != null) {
+            Instant start = date.truncatedTo(ChronoUnit.DAYS);
+            Instant end = start.plus(1, ChronoUnit.DAYS);
+            query.addCriteria(
+                    Criteria.where("date").gte(start).lt(end)
+            );
         }
 
-        if(paid){
-            query.addCriteria(Criteria.where("paid").is(paid));
+        // 6️⃣ Filtro opcional por pago
+        if (paid != null) {
+            query.addCriteria(Criteria.where("paidProject").is(paid));
         }
+
+        // 7️⃣ Paginación 10 en 10
+        int pageSize = 10;
+        query.skip((long) page * pageSize);
+        query.limit(pageSize);
 
         return mongoTemplate.find(query, ProjectJpaEntity.class);
-
     }
 
 }

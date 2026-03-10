@@ -15,11 +15,13 @@ public class ProjectMapper {
     public ProjectJpaEntity toEntity(Project project){
         ProjectJpaEntity projectJpaEntity = new ProjectJpaEntity();
         projectJpaEntity.setId(project.getId());
-        projectJpaEntity.setPaidProject(project.isPaidProject());
+        projectJpaEntity.setPaidProject(project.getPaidProject());
         projectJpaEntity.setUserId(project.getUserId());
         projectJpaEntity.setDescription(project.getDescription());
         projectJpaEntity.setTitle(project.getTitle());
         projectJpaEntity.setDate(project.getDate());
+        projectJpaEntity.setClosedProject(project.getClosedProject());
+
         Location location = project.getLocation();
         if(location != null){
             GeoJsonPoint geoJsonPoint = new GeoJsonPoint(location.getLongitude(), location.getLatitude());
@@ -32,11 +34,12 @@ public class ProjectMapper {
     public Project toDomain(ProjectJpaEntity projectJpaEntity){
         Project project = new Project();
         projectJpaEntity.setId(project.getId());
-        projectJpaEntity.setPaidProject(project.isPaidProject());
+        projectJpaEntity.setPaidProject(project.getPaidProject());
         projectJpaEntity.setUserId(project.getUserId());
         projectJpaEntity.setDescription(project.getDescription());
         projectJpaEntity.setTitle(project.getTitle());
         projectJpaEntity.setDate(project.getDate());
+        projectJpaEntity.setPaidProject(project.getClosedProject());
 
         GeoJsonPoint geoJsonPoint = projectJpaEntity.getGeoLocation();
         if(geoJsonPoint != null){

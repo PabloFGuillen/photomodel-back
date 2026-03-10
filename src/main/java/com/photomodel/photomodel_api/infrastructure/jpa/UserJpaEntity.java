@@ -32,8 +32,8 @@ public class UserJpaEntity {
 
     private List<Image> imageList = new ArrayList<>();
 
+    private Boolean active;
 
-    private Boolean active = true;
     public Boolean getEmailValidated() {
         return emailValidated;
     }

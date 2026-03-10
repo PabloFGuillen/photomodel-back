@@ -43,8 +43,8 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     }
 
     @Override
-    public List<Project> getProjectListNearLocation(String title, String username, Integer distances, Boolean paid, Instant date, Double latitude, Double longitude) {
-        List<ProjectJpaEntity> projectJpaEntity = projectJpaRepository.getProjectListNearLocation(title, username, distances, paid, date, latitude, longitude);
+    public List<Project> getProjectListNearLocation(Integer page, String title, String username, Integer distances, Boolean paid, Instant date, Double latitude, Double longitude) {
+        List<ProjectJpaEntity> projectJpaEntity = projectJpaRepository.getProjectListNearLocation(page, title, username, distances, paid, date, latitude, longitude);
         return projectMapper.toDomainList(projectJpaEntity);
     }
 
