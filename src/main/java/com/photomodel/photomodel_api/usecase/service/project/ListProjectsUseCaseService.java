@@ -38,22 +38,40 @@ public class ListProjectsUseCaseService implements ListProjectsUseCase {
 
         List<ProjectView> projectViews = new ArrayList<>();
         if(page == null){
-            page = 10;
+            page = 0;
         }
         List<Project> projectList = projectRepository.getProjectListNearLocation(page, title, username, distances, paid, date, latitude, longitude);
 
         for(Project project: projectList){
             User user = userRepository.getUserById(project.getUserId());
-            UserView userView = new UserView();
-            userView.setId(user.getId());
-            userView.setUsername(user.getUsername());
-            userView.setRole(user.getRole());
-            userView.setLevel(user.getLevel());
-            ProjectView projectView = new ProjectView();
-            projectView.setUser(userView);
+            UserView userView = setUserView(user);
+            ProjectView projectView = setProjectView(project, userView);
             projectViews.add(projectView);
         }
 
-        return projectViews;
+         return projectViews;
+    }
+
+    private static UserView setUserView(User user) {
+        UserView userView = new UserView();
+        userView.setId(user.getId());
+        userView.setUsername(user.getUsername());
+        userView.setRole(user.getRole());
+        userView.setLevel(user.getLevel());
+        return userView;
+    }
+
+    private static ProjectView setProjectView(Project project, UserView userView) {
+        ProjectView projectView = new ProjectView();
+        projectView.setId(project.getId());
+        projectView.setPaidProject(project.getPaidProject());
+        projectView.setDescription(project.getDescription());
+        projectView.setTitle(project.getTitle());
+        projectView.setDate(project.getDate());
+        projectView.setLocation(project.getLocation());
+        projectView.setPaidProject(project.getClosedProject());
+
+        projectView.setUser(userView);
+        return projectView;
     }
 }

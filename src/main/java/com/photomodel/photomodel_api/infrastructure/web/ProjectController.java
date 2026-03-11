@@ -7,7 +7,6 @@ import com.photomodel.photomodel_api.domain.exceptions.ValidationException;
 import com.photomodel.photomodel_api.infrastructure.views.CreateProjectView;
 import com.photomodel.photomodel_api.infrastructure.views.ProjectView;
 import com.photomodel.photomodel_api.usecase.port.input.project.CreateProjectUseCase;
-import com.photomodel.photomodel_api.usecase.port.input.project.GetProjectDetailsUseCase;
 import com.photomodel.photomodel_api.usecase.port.input.project.ListProjectsUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,9 +23,6 @@ public class ProjectController {
 
     @Autowired
     private CreateProjectUseCase createProjectUseCase;
-
-    @Autowired
-    private GetProjectDetailsUseCase getProjectDetailsUseCase;
 
     @Autowired
     private ListProjectsUseCase listProjectsUseCase;

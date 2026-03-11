@@ -38,11 +38,11 @@ public class ProjectJpaRepository {
 
         // 1️⃣ GeoPoint correcto
         GeoJsonPoint point = new GeoJsonPoint(longitude, latitude);
-        Distance mongoDistance = new Distance(10*1000, Metrics.NEUTRAL);
+        Distance mongoDistance = new Distance(distance, Metrics.KILOMETERS);
 
         query.addCriteria(
                 Criteria.where("geoLocation")
-                        .nearSphere(point)
+                        .near(point)
                         .maxDistance(mongoDistance.getNormalizedValue())
         );
 
@@ -75,6 +75,9 @@ public class ProjectJpaRepository {
 
         // 7️⃣ Paginación 10 en 10
         int pageSize = 10;
+        if(page == null){
+            page = 0;
+        }
         query.skip((long) page * pageSize);
         query.limit(pageSize);
 

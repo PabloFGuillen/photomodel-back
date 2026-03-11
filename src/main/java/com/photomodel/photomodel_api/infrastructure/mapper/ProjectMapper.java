@@ -33,13 +33,13 @@ public class ProjectMapper {
 
     public Project toDomain(ProjectJpaEntity projectJpaEntity){
         Project project = new Project();
-        projectJpaEntity.setId(project.getId());
-        projectJpaEntity.setPaidProject(project.getPaidProject());
-        projectJpaEntity.setUserId(project.getUserId());
-        projectJpaEntity.setDescription(project.getDescription());
-        projectJpaEntity.setTitle(project.getTitle());
-        projectJpaEntity.setDate(project.getDate());
-        projectJpaEntity.setPaidProject(project.getClosedProject());
+        project.setId(projectJpaEntity.getId());
+        project.setPaidProject(projectJpaEntity.getPaidProject());
+        project.setUserId(projectJpaEntity.getUserId());
+        project.setDescription(projectJpaEntity.getDescription());
+        project.setTitle(projectJpaEntity.getTitle());
+        project.setDate(projectJpaEntity.getDate());
+        project.setPaidProject(projectJpaEntity.getClosedProject());
 
         GeoJsonPoint geoJsonPoint = projectJpaEntity.getGeoLocation();
         if(geoJsonPoint != null){

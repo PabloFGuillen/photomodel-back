@@ -1,11 +1,14 @@
 package com.photomodel.photomodel_api.usecase.service.application;
 
 import com.photomodel.photomodel_api.domain.Application;
+import com.photomodel.photomodel_api.domain.User;
 import com.photomodel.photomodel_api.usecase.port.input.application.JoinProjectAsPhotographerUseCase;
 import com.photomodel.photomodel_api.usecase.port.output.ApplicationRepository;
 import com.photomodel.photomodel_api.utils.enums.ProjectStatus;
 import com.photomodel.photomodel_api.utils.enums.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -17,7 +20,8 @@ public class JoinProjectAsPhotographerUseCaseService implements JoinProjectAsPho
     private ApplicationRepository applicationRepository;
 
     @Override
-    public void JoinProjectAsPhotographerUseCase(String projectId, String userId) {
+    public void joinProjectAsPhotographerUseCase(String projectId, String userId) {
+
         Application application = new Application();
         application.setRole(UserRole.PHOTOGRAPHER);
         application.setUserId(userId);
