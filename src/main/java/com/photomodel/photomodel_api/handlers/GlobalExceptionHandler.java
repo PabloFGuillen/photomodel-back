@@ -90,5 +90,43 @@ public class GlobalExceptionHandler {
 
     }
 
+    @ExceptionHandler(AlredySentApplicationToProjectException.class)
+    public ResponseEntity<Map<String, String>> handlerAlredySentApplicationToProjectException(AlredySentApplicationToProjectException ex){
+        Map<String, String> body = Map.of("error", ex.getMessage());
 
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(body);
+
+    }
+
+    @ExceptionHandler(ProjectNotFromUserException.class)
+    public ResponseEntity<Map<String, String>> handlerProjectNotFromUserException(ProjectNotFromUserException ex){
+        Map<String, String> body = Map.of("error", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(body);
+
+    }
+
+    @ExceptionHandler(CannotModifyApplicationException.class)
+    public ResponseEntity<Map<String, String>> handlerCannotModifyApplicationException(CannotModifyApplicationException ex){
+        Map<String, String> body = Map.of("error", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(body);
+
+    }
+
+    @ExceptionHandler(ApplicationDoesNotExistException.class)
+    public ResponseEntity<Map<String, String>> handlerApplicationDoesNotExistException(ApplicationDoesNotExistException ex){
+        Map<String, String> body = Map.of("error", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(body);
+
+    }
 }

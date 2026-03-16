@@ -1,8 +1,8 @@
 package com.photomodel.photomodel_api.usecase.port.output;
 
 import com.photomodel.photomodel_api.domain.Application;
+import com.photomodel.photomodel_api.utils.enums.UserRole;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -15,4 +15,7 @@ public interface ApplicationRepository {
 
     void updateApplication(Application application);
 
+    Application getApplicationByUserIdAndProject(String userId, String projectId);
+
+    List<Application> getPendingApplicationsToProjectUseCase(String projectId, UserRole userRole);
 }

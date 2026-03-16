@@ -1,6 +1,7 @@
 package com.photomodel.photomodel_api.infrastructure.jpa.repo;
 
 import com.photomodel.photomodel_api.infrastructure.jpa.ApplicationJpaEntity;
+import com.photomodel.photomodel_api.utils.enums.ProjectStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -33,6 +34,21 @@ public class ApplicationJpaRepository {
         Query query = new Query();
         query.addCriteria(Criteria.where("projectId").is(projectId).and("role").is(role));
 
+        return mongoTemplate.find(query, ApplicationJpaEntity.class);
+    }
+
+    public ApplicationJpaEntity getApplicationByUserIdAndProject(String userId, String projectId){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("userId").is(userId));
+        query.addCriteria(Criteria.where("projectId").is(projectId));
+
+        return mongoTemplate.findOne(query, ApplicationJpaEntity.class);
+    }
+
+    public List<ApplicationJpaEntity> getPendingApplicationsToProjectUseCase(String projectId){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("projectId").is(projectId));
+        query.addCriteria(Criteria.where("status").is(ProjectStatus.PENDING));
         return mongoTemplate.find(query, ApplicationJpaEntity.class);
     }
 

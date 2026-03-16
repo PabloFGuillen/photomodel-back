@@ -1,11 +1,11 @@
 package com.photomodel.photomodel_api.infrastructure.web;
 
-import com.photomodel.photomodel_api.domain.exceptions.DistanceCannotBeNullException;
-import com.photomodel.photomodel_api.domain.exceptions.LatitudeLongitudeCannotBeNullException;
-import com.photomodel.photomodel_api.domain.exceptions.ModelCreatingProjectException;
-import com.photomodel.photomodel_api.domain.exceptions.ValidationException;
+import com.photomodel.photomodel_api.domain.exceptions.*;
+import com.photomodel.photomodel_api.infrastructure.views.ApplicationView;
 import com.photomodel.photomodel_api.infrastructure.views.CreateProjectView;
 import com.photomodel.photomodel_api.infrastructure.views.ProjectView;
+import com.photomodel.photomodel_api.usecase.port.input.application.ReviewModelApplicationUseCase;
+import com.photomodel.photomodel_api.usecase.port.input.application.ReviewPhotographerApplicationUseCase;
 import com.photomodel.photomodel_api.usecase.port.input.project.CreateProjectUseCase;
 import com.photomodel.photomodel_api.usecase.port.input.project.ListProjectsUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,12 @@ public class ProjectController {
     @Autowired
     private ListProjectsUseCase listProjectsUseCase;
 
+    @Autowired
+    private ReviewModelApplicationUseCase reviewModelApplicationUseCase;
+
+    @Autowired
+    private ReviewPhotographerApplicationUseCase reviewPhotographerApplicationUseCase;
+
     @PostMapping("")
     public ResponseEntity<HttpStatus> saveProject(@RequestBody CreateProjectView createProjectView) throws ValidationException, ModelCreatingProjectException {
         createProjectUseCase.createProjectUseCase(createProjectView);
@@ -43,6 +49,24 @@ public class ProjectController {
                                                              @RequestParam(value = "longitude", required = true) Double longitude,
                                                              @RequestParam(value = "page", required = false) Integer page) throws DistanceCannotBeNullException, LatitudeLongitudeCannotBeNullException {
         return new ResponseEntity<>(listProjectsUseCase.getProjectList(page, title, username, distances, paid, date, latitude, longitude), HttpStatus.OK);
+    }
+
+    @GetMapping("/applications/model/{project}")
+    public ResponseEntity<List<ApplicationView>> getOpenApplicationsToProject(@PathVariable(value = "project") String project) throws ProjectNotFromUserException {
+
+        List<ApplicationView> applicationViews = reviewModelApplicationUseCase.getOpenModelApplicationsToProjectUseCase(project);
+        return new ResponseEntity<>(applicationViews, HttpStatus.OK);
+
+
+    }
+
+    @GetMapping("/applications/photographer/{project}")
+    public ResponseEntity<List<ApplicationView>> getOpenPhotographerApplicationsToProject(@PathVariable(value = "project") String project) throws ProjectNotFromUserException {
+
+        List<ApplicationView> applicationViews = reviewPhotographerApplicationUseCase.getOpenPhotographerApplicationsToProjectUseCase(project);
+        return new ResponseEntity<>(applicationViews, HttpStatus.OK);
+
+
     }
 
 }

@@ -8,6 +8,8 @@ import com.photomodel.photomodel_api.usecase.port.output.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class ApplicationRepositoryImpl implements ApplicationRepository {
 
@@ -36,5 +38,17 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     }
 
+    @Override
+    public Application getApplicationByUserIdAndProject(String userId, String projectId) {
+        ApplicationJpaEntity applicationJpaEntity = applicationJpaRepository.getApplicationByUserIdAndProject(userId, projectId);
 
+        return applicationMapper.toDomain(applicationJpaEntity);
+    }
+
+    @Override
+    public List<Application> getPendingApplicationsToProjectUseCase(String projectId) {
+        List<ApplicationJpaEntity> applicationJpaEntity = applicationJpaRepository.getPendingApplicationsToProjectUseCase(projectId);
+
+        return applicationMapper.toDomainList(applicationJpaEntity);
+    }
 }
