@@ -34,7 +34,7 @@ public class ReviewPhotographerApplicationUseCaseService implements ReviewPhotog
     private ProjectRepository projectRepository;
 
     @Override
-    public List<ApplicationView> getOpenModelApplicationsToProjectUseCase(String projectId) throws ProjectNotFromUserException {
+    public List<ApplicationView> getOpenPhotographerApplicationsToProjectUseCase(String projectId) throws ProjectNotFromUserException {
         List<ApplicationView> applicationViewList = new ArrayList<>();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User authenticatedUser = (User) auth.getPrincipal();

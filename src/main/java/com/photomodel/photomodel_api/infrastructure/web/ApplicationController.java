@@ -18,12 +18,12 @@ import java.util.List;
 @RequestMapping("/application")
 public class ApplicationController {
 
-    @Autowired
-    private AcceptApplicationUseCase acceptApplicationUseCaseService;
 
     @Autowired
     private JoinProjectUseCase joinProjectUseCase;
 
+    @Autowired
+    private AcceptApplicationUseCase acceptApplicationUseCaseService;
 
     @Autowired
     private RejectApplicationUseCase rejectApplicationUseCaseService;
